@@ -1,0 +1,16 @@
+.resultado {
+  display: none;
+  text-align: center;
+}
+  
+.botonReboot {
+  display: none; 
+  text-align: center;
+}
+
+  .texto-resultado {
+    font-family: 'Bebas neue', cursive;
+    text-align: center;
+    color: aliceblue;
+
+  }
