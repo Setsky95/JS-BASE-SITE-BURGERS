@@ -127,7 +127,7 @@ switch (respuesta9.toLowerCase()) {
 }
 
 let respuesta10 = prompt("¿Cuál era la profesión de Ross en la serie?");
-switch (respuesta10.toLowerCase()) {
+switch (respuesta10.toLowerCase()) { /* verificar si no sería uppercase */
   case "Paleontólogo":
   case "Paleontologo":
   case "Paleontología":

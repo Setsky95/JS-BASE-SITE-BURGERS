@@ -14,3 +14,18 @@
     color: aliceblue;
 
   }
+
+  .fondo_burger {
+    background-image: url("imgs/fondo_tarjeta_terraza.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .texto-web {
+    color: aliceblue;
+    font-family: 'Bebas neue', cursive;
+    font-weight: 600;
+    font-size: 1,8rem;
+
+
+  }
