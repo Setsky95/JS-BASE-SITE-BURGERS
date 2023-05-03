@@ -55,29 +55,73 @@ carrito.push(hamburguesas[5]);
  
 /* BOTONES PARA PUSHEAR AL ARRAY CARRITO*/
  
- const botonNocheestrellada = document.querySelector("#btn1");
+const botonNocheestrellada = document.querySelector("#btn1");
 botonNocheestrellada.onclick = function () {
-  carrito.push(hamburguesas[0]); 
+  carrito.push(hamburguesas[0]);
+  let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
+
 const botonAutorretrato = document.querySelector("#btn2");
 botonAutorretrato.onclick = function () {
   carrito.push(hamburguesas[1]); 
+  let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
 const botonVincent = document.querySelector("#btn3");
 botonVincent.onclick = function () {
   carrito.push(hamburguesas[2]); 
+  let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
 const botonGirasoles = document.querySelector("#btn4");
 botonGirasoles.onclick = function () {
   carrito.push(hamburguesas[3]); 
+    let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
+
 const botonpapas1= document.querySelector("#btn5");
 botonpapas1.onclick = function () {
   carrito.push(hamburguesas[4]); 
+  let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
 const botonPapas2 = document.querySelector("#btn6");
 botonPapas2.onclick = function () {
   carrito.push(hamburguesas[5]); 
+  let carritoFinal =carrito.map(burger =>{
+    return `${burger.icono}  ${burger.titulo}`  ;
+  });  const precioFinal = carrito.reduce((acumulado, burger) => {
+    return acumulado + burger.precio;
+  }, 0);
+  const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+  const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal} `;
 }
 
 
@@ -89,6 +133,8 @@ botonPapas2.onclick = function () {
 const vaciarCarrito = document.querySelector("#btnVaciado");
 vaciarCarrito.onclick = function () {
 const carritoVaciado = carrito.splice(0)
+const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
+const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal}. `;
 }
 
 
@@ -115,7 +161,7 @@ let precioFinal = carrito.reduce((acumulado, burger)=>{
 /* COMPOSICIÓN DEL CARRITO */
 
 let carritoFinal =carrito.map(burger =>{
-    return `${burger.icono}  ${burger.titulo}`  ;
+  return `${burger.icono}  ${burger.titulo}`  ;
 
 });
 
