@@ -133,8 +133,8 @@ botonPapas2.onclick = function () {
 const vaciarCarrito = document.querySelector("#btnVaciado");
 vaciarCarrito.onclick = function () {
 const carritoVaciado = carrito.splice(0)
-const precioCarrito = document.querySelector("#precioCarrito").textContent = ` total: ${precioFinal} `;
-const textoCarrito = document.querySelector("#carritofinal").textContent = `Tu pedido es: ${carritoFinal}. `;
+const precioCarrito = document.querySelector("#precioCarrito").textContent = `  `;
+const textoCarrito = document.querySelector("#carritofinal").textContent = `El plato está vacío`;
 }
 
 
@@ -169,10 +169,10 @@ let carritoFinal =carrito.map(burger =>{
 /* MUESTRA DE PRODUCTOS EN CARRITO  */
 
 const textoCarrito = document.querySelector("#carritofinal").textContent=
-`Tu pedido es: ${carritoFinal}`
+`El plato está vacío`
 
 const precioCarrito = document.querySelector("#precioCarrito").textContent=
-`total  $${precioFinal}`
+``
 
 
 console.log(carrito)
