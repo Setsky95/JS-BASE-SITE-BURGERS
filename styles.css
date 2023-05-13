@@ -29,3 +29,46 @@
 
 
   }
+
+  .interlineado-menu {
+    line-height: 1rem;
+
+  }
+  .texto-carrito {
+    color: aliceblue;
+    font-family: 'Bebas neue', cursive;
+    font-weight: 400;
+    font-size: 1.2rem;
+
+
+  }
+
+  body {
+    background-image: url("/imgs/fondo2.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .contenedor-portada-index {
+    padding: 5rem 0 5rem 0;
+    height: 25rem;
+    background-image: url("../imgs//portada_indezx.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .contenedor-boton-portada {
+    width: 10rem;
+    justify-content: center;
+  }
+
+  .fondo_terraza {
+    background-image: url("imgs/fondo_tarjeta_terraza.webp"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
