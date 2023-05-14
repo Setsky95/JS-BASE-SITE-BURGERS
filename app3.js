@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
     <div class="card-body fondo_terraza "  style="height: 12rem;" >
       <h2 class="text-center texto-web my-0">${hamburguesa.titulo}</h2>
       <p class="text-center texto-carrito my-0 interlineado-menu"  style="height: 3rem;">${hamburguesa.ingredientes}</p>
-      <p class="text-center texto-carrito my ">$${hamburguesa.precio}</p>
+      <p class="text-center texto-carrito  ">$${hamburguesa.precio}</p>
       <button  class="pusheoAlcarrito btn btn-dark btn-outline-light px-1 py-0">Sumar al pedido</a> 
     </div>
   </div>
@@ -75,6 +75,11 @@ ocultarCarritovacio  ()
   /* PUSH X INDICE  
   carrito.push(hamburguesas[5]);  
   */
+
+  carrito.push(hamburguesas[5]);  
+  carrito.push(hamburguesas[5]);  
+  carrito.push(hamburguesas[5]);  
+
 //////////////////////////////////////////////
 //FUNCION DE ACTUALIZACIÓN QUE ELIMINA LO RENDERIZADO SI TIENE UN HIJO 
   //Y RENDERIZA DE NUEVO CON UN FOREACH
@@ -134,7 +139,7 @@ function actualizarPreciofinal () {
 
 
 ///////////////////////////////////////////////
-  //CICLO FOREACH PARA PUSHEAR AL CARRITO 
+  //CICLO FOREACH PARA PUSHEAR AL CARRITO// 
 //////////////////////////////////////////////
 document.querySelectorAll(`.pusheoAlcarrito`).forEach((boton, index) => {
   boton.addEventListener(`click`, () => {
