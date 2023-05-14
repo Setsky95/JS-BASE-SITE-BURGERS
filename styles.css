@@ -44,7 +44,7 @@
   }
 
   body {
-    background-image: url("/imgs/fondo2.webp");
+    background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
