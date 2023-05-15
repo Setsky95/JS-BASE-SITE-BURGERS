@@ -2,22 +2,23 @@ window.addEventListener('load', function () {
 
 
 
-  let hamburguesas = [
+  const  hamburguesas = [
   
-    { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp"} ,
-    { id: 2, titulo: "Autorretrato", icono:"🍔"  , precio:1800, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, bacon", disponible: true, img:"./imgs/autotriplechica.webp" } ,
-    { id: 3, titulo: "Vincent", icono:"🍔"  , precio:2400, ingredientes: "Pan de papa, cuatro quesos, carne 100% vacuna, salsa criolla", disponible: true, img:"./imgs/Vangoghchica.webp" } ,
-    { id: 4, titulo: "Girasoles", icono:"🍔"  , precio:2000, ingredientes: "Pan de papa, medallón NotBurger, cebolla grillada, champis", disponible: true , img:"./imgs/girasoleschica.webp"} ,
-    { id: 5, titulo: "Noche Estrellada", icono:"🍔"  , precio:1900, ingredientes: "Pan de papa, medallón de carne, cebolla caramelizada, cheddar", disponible: true , img:"./imgs/viñedochica.webp"} ,
-    { id: 6, titulo: "Cuervos", icono:"🍔"  , precio:2150, ingredientes: "Pan de papa, medallón de carne, que azul, queso crema, nuez", disponible: true , img:"./imgs/CuervosChica.webp"} ,
-    { id: 7, titulo: "Pollo grill", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, pollo en cubos,cebolla  y cheddar", disponible: true , img:"./imgs/sangu_de_pollo.webp"} ,
-    { id: 8, titulo: "Philly steak", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, carne asada en tiras, cebolla  y cheddar", disponible: true , img:"./imgs/Philly_steak.webp"} ,
-    { id: 9, titulo: "Nuggets", icono:"🥨"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp"} ,
-    { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp"} ,
-    { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp"} ,
-    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp"} ,
+    { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
+    { id: 2, titulo: "Autorretrato", icono:"🍔"  , precio:1800, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, bacon", disponible: true, img:"./imgs/autotriplechica.webp", cantidad:1 } ,
+    { id: 3, titulo: "Vincent", icono:"🍔"  , precio:2400, ingredientes: "Pan de papa, cuatro quesos, carne 100% vacuna, salsa criolla", disponible: true, img:"./imgs/Vangoghchica.webp", cantidad:1 } ,
+    { id: 4, titulo: "Girasoles", icono:"🍔"  , precio:2000, ingredientes: "Pan de papa, medallón NotBurger, cebolla grillada, champis", disponible: true , img:"./imgs/girasoleschica.webp", cantidad:1} ,
+    { id: 5, titulo: "Noche Estrellada", icono:"🍔"  , precio:1900, ingredientes: "Pan de papa, medallón de carne, cebolla caramelizada, cheddar", disponible: true , img:"./imgs/viñedochica.webp", cantidad:1} ,
+    { id: 6, titulo: "Cuervos", icono:"🍔"  , precio:2150, ingredientes: "Pan de papa, medallón de carne, que azul, queso crema, nuez", disponible: true , img:"./imgs/CuervosChica.webp", cantidad:1} ,
+    { id: 7, titulo: "Pollo grill", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, pollo en cubos,cebolla  y cheddar", disponible: true , img:"./imgs/sangu_de_pollo.webp", cantidad:1} ,
+    { id: 8, titulo: "Philly steak", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, carne asada en tiras, cebolla  y cheddar", disponible: true , img:"./imgs/Philly_steak.webp", cantidad:1} ,
+    { id: 9, titulo: "Nuggets", icono:"🥨"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp", cantidad:1} ,
+    { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
+    { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
+    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
 
   ]
+
 
 
   //////////////////////////////////////////////
@@ -62,12 +63,10 @@ mostrarCierre.style.display = "block";
 mostrarCarrito.style.display = "block";
 backHomeBtn.style.display = "none";
 
- actualizarCarrito2 ();
 } else {
 backHomeBtn.style.display = "block";
  mostrarCarrito.style.display = "none";
  mostrarCierre.style.display = "none";
- actualizarCarrito2 ();
 
 }
 }
@@ -76,9 +75,8 @@ ocultarCarritovacio  ()
   carrito.push(hamburguesas[5]);  
   */
 
-  carrito.push(hamburguesas[5]);  
-  carrito.push(hamburguesas[5]);  
-  carrito.push(hamburguesas[5]);  
+ 
+
 
 //////////////////////////////////////////////
 //FUNCION DE ACTUALIZACIÓN QUE ELIMINA LO RENDERIZADO SI TIENE UN HIJO 
@@ -109,7 +107,8 @@ ocultarCarritovacio  ()
     <button type="button" class="borrarDelcarrito btn btn-dark p-1">Borrar del pedido</a> 
     </div>
     <div class=" d-flex justify-content-end align-items-center">
-    <h3 class="texto-carrito "> $${productoElegido.precio}  </h3>
+   <h4 class="cantidadProducto texto-carrito" id="${productoElegido.id}">${productoElegido.cantidad} x-</h4>
+    <h3 class="texto-carrito ">  $${productoElegido.precio}  </h3> 
 </div>
 </div>
 
@@ -120,14 +119,20 @@ ocultarCarritovacio  ()
   });
 }
 
+function actualizarExistente () {
+
+}
 
 
 //////////////////////////////////////////////
 //  SUMA DEL CARRITO //
 //////////////////////////////////////////////
+
 function actualizarPreciofinal () {
-  let precioFinal = carrito.reduce((acumulado, burger)=>{
-    return acumulado + burger.precio
+  
+  let precioFinal = carrito.reduce((acumulado, burger, )=>{
+    const subtotal = burger.precio * burger.cantidad;
+    return acumulado + subtotal
   }, 0)
   
     const precioCarrito = document.getElementById("precioCarrito")
@@ -138,19 +143,79 @@ function actualizarPreciofinal () {
   }
 
 
-///////////////////////////////////////////////
-  //CICLO FOREACH PARA PUSHEAR AL CARRITO// 
-//////////////////////////////////////////////
-document.querySelectorAll(`.pusheoAlcarrito`).forEach((boton, index) => {
-  boton.addEventListener(`click`, () => {
-    carrito.push(hamburguesas[index]);
-    ocultarCarritovacio  ();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //FUNCION DE FIND PARA VERIFICAR SI EL PRODUCTO ESTÁ REPETIDO EN EL ARRAY CARRITO Y PUSHEAR O MODIFICAR CANTIDAD.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
+  boton.addEventListener('click', () => {
+    const productoSeleccionado = hamburguesas[index];
+
+    const productoRepetido = carrito.find((p) => p.id === productoSeleccionado.id);
+
+    if (productoRepetido) {
+      productoRepetido.cantidad++; 
+      actualizarPreciofinal();
+      actualizarCarrito2();
+
+    } else {
+      carrito.push({...productoSeleccionado}); 
+    }
+    
     actualizarCarrito2();
-    actualizarPreciofinal ();
-
-
+    ocultarCarritovacio();
+    actualizarPreciofinal();
   });
 });
+
+
+
+console.log (carrito)
+
+ 
+
+ ///////////////////////////////////////////// /////////////////////////////////////////////
+
+/* const btnPush = document.getElementsByClassName("pusheoAlcarrito");
+const carritohtml = document.getElementById ("carritoOn");
+   
+for (let i = 0; i <btnPush.length; i++ ) {
+    btnPush[i].addEventListener("click", function pushAlcarrito (){
+      const productoSeleccionado = hamburguesas[i];
+      const productoExistente = carrito.find((p) => p.id === productoSeleccionado.id);
+      if (productoExistente){
+        productoExistente.cantidad++;
+        const productoExistenteDiv = document.getElementById ();
+        productoExistenteDiv.querySelector(".cantidadProducto").textContent= productoExistente.cantidad;
+      } else {
+        const contenedor2 = document.createElement(`article`);
+    contenedor2.classList.add(`productoElegido`);
+    contenedor2.innerHTML = `
+    
+    <div class=" row  row-cols-md-3  g-3   border-dark card-sm bg-transparent  d-flex  justify-content-start align-items-center" ">
+    <div class=" d-flex justify-content-start align-items-center">
+    <h2 class="texto-carrito"> ${productoElegido.icono}  ${productoElegido.titulo}  </h2></div>
+
+    <div class=" d-flex justify-content-between align-items-center">
+    
+    <button type="button" class="borrarDelcarrito btn btn-dark p-1">Borrar del pedido</a> 
+    </div>
+    <div class=" d-flex justify-content-end align-items-center">
+   <p class="cantidadProducto" id="${productoElegido.id}"> </p>
+    <h3 class="texto-carrito ">  $${productoElegido.precio}  </h3> 
+</div>
+</div>
+
+
+    `;
+
+    contenedorCarrito.appendChild (contenedor2)
+
+      }
+    })
+ */
+
+
 
 
  /////////////////////////////////////////////
@@ -208,6 +273,33 @@ document.querySelectorAll(`.pusheoAlcarrito`).forEach((boton, index) => {
   console.log(carrito)
   console.log(`el pedido es ${carritoFinal}`)
    */
-  
+
+    //////////////////////////////////////////////
+//enviar pedido x wsp //
+    //////////////////////////////////////////////
+
+const enviarPorWhatsApp = () => {
+  const numeroTelefono = '+542214944050';
+
+  let mensaje = "¡Hola! Quiero hacer este pedido";
+  carrito.forEach((producto) => {
+    const { icono, titulo, cantidad, precio } = producto;
+    mensaje += `:\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n`;
+  });
+
+  let precioTotal = carrito.reduce((acumulado, burger, )=>{
+    const subtotal = burger.precio * burger.cantidad;
+    return acumulado + subtotal
+  }, 0)
+  mensaje += `Precio final: ${precioTotal}`;
+
+  const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+};
+
+document.getElementById('finalizarPedido').addEventListener('click', enviarPorWhatsApp);
+
   
   })
+
+ 
