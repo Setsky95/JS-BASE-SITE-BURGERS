@@ -55,7 +55,7 @@
   .contenedor-portada-index {
     padding: 5rem 0 5rem 0;
     height: 25rem;
-    background-image: url("../imgs//portada_indezx.webp");
+    background-image: url("./imgs//portada_indezx.webp");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -70,3 +70,4 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+

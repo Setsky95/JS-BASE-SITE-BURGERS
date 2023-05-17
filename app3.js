@@ -1,7 +1,9 @@
 window.addEventListener('load', function () {
+  const carrito = [] =  JSON.parse(localStorage.getItem("carrito")) 
 
+    
 
-
+  
   const  hamburguesas = [
   
     { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
@@ -26,17 +28,16 @@ window.addEventListener('load', function () {
 //////////////////////////////////////////////
 
   const contenedorProductos = document.querySelector (".contenedorProductos")
-  
 
   hamburguesas.forEach(hamburguesa =>  { 
     const contenedor = document.createElement(`article`);
     contenedor.classList.add(`hamburguesa`);
     contenedor.innerHTML= 
     `
-    <div class=" rounded-5 ">
+    <div class=" rounded-5  ">
     <img src="${hamburguesa.img}" class="card-img-top rounded-1" alt="viñedo">
-  <div class="my-2 text-center card"  >
-    <div class="card-body fondo_terraza "  style="height: 12rem;" >
+  <div class="my-2 text-center card border-0"  >
+    <div class="card-body fondo_terraza "  style="height: 13rem;" >
       <h2 class="text-center texto-web my-0">${hamburguesa.titulo}</h2>
       <p class="text-center texto-carrito my-0 interlineado-menu"  style="height: 3rem;">${hamburguesa.ingredientes}</p>
       <p class="text-center texto-carrito  ">$${hamburguesa.precio}</p>
@@ -44,12 +45,22 @@ window.addEventListener('load', function () {
     </div>
   </div>
   </div>
+
     `
     contenedorProductos.appendChild (contenedor)
   });
   
-  const carrito = []
-  
+
+  //////////////////////////////////
+  //FUNCIÓN PARA GUARDAR  Y CARGAR EN EL STORAGE//
+  ///////////////////////////////
+  function saveLocalStorage () {
+const carritoStr = JSON.stringify(carrito)
+  localStorage.setItem( "carrito", `${carritoStr}`)
+}
+
+
+
     //////////////////////////////////////////////
 // CONDICIONAL PARA MOSTRAR CARRITO O NO //
 //////////////////////////////////////////////
@@ -75,9 +86,29 @@ ocultarCarritovacio  ()
   carrito.push(hamburguesas[5]);  
   */
 
- 
+ //////////////////////////////////////////
+ // FUNCION TOASTY TOQUETEADA //
+ ///////////////////////////////////////////////
 
-
+ function toastifyNotification ()  {
+ Toastify({
+  text: "Sumado al carrito",
+  duration: 4000,
+  destination: "#carritoOn",
+  newWindow: false,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "left", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #262629, #5d5a5a)",
+    borderRadius: "8px",
+    boxShadow: "none",
+    fontFamily: "'oswald', cursive"
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+}
 //////////////////////////////////////////////
 //FUNCION DE ACTUALIZACIÓN QUE ELIMINA LO RENDERIZADO SI TIENE UN HIJO 
   //Y RENDERIZA DE NUEVO CON UN FOREACH
@@ -116,13 +147,15 @@ ocultarCarritovacio  ()
     `;
 
     contenedorCarrito.appendChild (contenedor2)
+    saveLocalStorage ();
+
   });
 }
 
 function actualizarExistente () {
 
 }
-
+actualizarCarrito2 () //PARA QUE MUESTRE EL CARRITO GUARDADO EN EL LOCAL STORAGE //
 
 //////////////////////////////////////////////
 //  SUMA DEL CARRITO //
@@ -157,9 +190,11 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
       productoRepetido.cantidad++; 
       actualizarPreciofinal();
       actualizarCarrito2();
+      toastifyNotification () 
 
     } else {
       carrito.push({...productoSeleccionado}); 
+      toastifyNotification () 
     }
     
     actualizarCarrito2();
@@ -174,48 +209,6 @@ console.log (carrito)
 
  
 
- ///////////////////////////////////////////// /////////////////////////////////////////////
-
-/* const btnPush = document.getElementsByClassName("pusheoAlcarrito");
-const carritohtml = document.getElementById ("carritoOn");
-   
-for (let i = 0; i <btnPush.length; i++ ) {
-    btnPush[i].addEventListener("click", function pushAlcarrito (){
-      const productoSeleccionado = hamburguesas[i];
-      const productoExistente = carrito.find((p) => p.id === productoSeleccionado.id);
-      if (productoExistente){
-        productoExistente.cantidad++;
-        const productoExistenteDiv = document.getElementById ();
-        productoExistenteDiv.querySelector(".cantidadProducto").textContent= productoExistente.cantidad;
-      } else {
-        const contenedor2 = document.createElement(`article`);
-    contenedor2.classList.add(`productoElegido`);
-    contenedor2.innerHTML = `
-    
-    <div class=" row  row-cols-md-3  g-3   border-dark card-sm bg-transparent  d-flex  justify-content-start align-items-center" ">
-    <div class=" d-flex justify-content-start align-items-center">
-    <h2 class="texto-carrito"> ${productoElegido.icono}  ${productoElegido.titulo}  </h2></div>
-
-    <div class=" d-flex justify-content-between align-items-center">
-    
-    <button type="button" class="borrarDelcarrito btn btn-dark p-1">Borrar del pedido</a> 
-    </div>
-    <div class=" d-flex justify-content-end align-items-center">
-   <p class="cantidadProducto" id="${productoElegido.id}"> </p>
-    <h3 class="texto-carrito ">  $${productoElegido.precio}  </h3> 
-</div>
-</div>
-
-
-    `;
-
-    contenedorCarrito.appendChild (contenedor2)
-
-      }
-    })
- */
-
-
 
 
  /////////////////////////////////////////////
@@ -229,6 +222,8 @@ for (let i = 0; i <btnPush.length; i++ ) {
   actualizarCarrito2 ();
   actualizarPreciofinal ();
   ocultarCarritovacio  ();
+  saveLocalStorage ();
+
 
   const textoCarrito = document.querySelector("#precioCarrito").textContent = `El plato está vacío`;
   }
@@ -251,6 +246,8 @@ for (let i = 0; i <btnPush.length; i++ ) {
           actualizarCarrito2();
           actualizarPreciofinal();
           ocultarCarritovacio  ();
+          saveLocalStorage ();
+
       }
     });
 
