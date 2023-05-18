@@ -92,7 +92,7 @@ ocultarCarritovacio  ()
 
  function toastifyNotification ()  {
  Toastify({
-  text: "Sumado al carrito",
+  text: "AGREGADO",
   duration: 4000,
   destination: "#carritoOn",
   newWindow: false,
@@ -101,7 +101,7 @@ ocultarCarritovacio  ()
   position: "left", // `left`, `center` or `right`
   stopOnFocus: true, // Prevents dismissing of toast on hover
   style: {
-    background: "linear-gradient(to right, #262629, #5d5a5a)",
+    background: "#5d5a5a",
     borderRadius: "8px",
     boxShadow: "none",
     fontFamily: "'oswald', cursive"
@@ -195,11 +195,12 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
     } else {
       carrito.push({...productoSeleccionado}); 
       toastifyNotification () 
-    }
+   
     
     actualizarCarrito2();
     ocultarCarritovacio();
     actualizarPreciofinal();
+     }
   });
 });
 
