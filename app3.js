@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-  const carrito = [] =  JSON.parse(localStorage.getItem("carrito")) 
+  const carrito = [] 
 
     
 
