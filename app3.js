@@ -18,6 +18,7 @@ window.addEventListener('load', function () {
     { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
     { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
     { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
+    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
 
   ]
 
