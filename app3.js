@@ -6,19 +6,19 @@ window.addEventListener('load', function () {
   
   const  hamburguesas = [
   
-    { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
-    { id: 2, titulo: "Autorretrato", icono:"🍔"  , precio:1800, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, bacon", disponible: true, img:"./imgs/autotriplechica.webp", cantidad:1 } ,
-    { id: 3, titulo: "Vincent", icono:"🍔"  , precio:2400, ingredientes: "Pan de papa, cuatro quesos, carne 100% vacuna, salsa criolla", disponible: true, img:"./imgs/Vangoghchica.webp", cantidad:1 } ,
-    { id: 4, titulo: "Girasoles", icono:"🍔"  , precio:2000, ingredientes: "Pan de papa, medallón NotBurger, cebolla grillada, champis", disponible: true , img:"./imgs/girasoleschica.webp", cantidad:1} ,
-    { id: 5, titulo: "Noche Estrellada", icono:"🍔"  , precio:1900, ingredientes: "Pan de papa, medallón de carne, cebolla caramelizada, cheddar", disponible: true , img:"./imgs/viñedochica.webp", cantidad:1} ,
-    { id: 6, titulo: "Cuervos", icono:"🍔"  , precio:2150, ingredientes: "Pan de papa, medallón de carne, que azul, queso crema, nuez", disponible: true , img:"./imgs/CuervosChica.webp", cantidad:1} ,
-    { id: 7, titulo: "Pollo grill", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, pollo en cubos,cebolla  y cheddar", disponible: true , img:"./imgs/sangu_de_pollo.webp", cantidad:1} ,
-    { id: 8, titulo: "Philly steak", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, carne asada en tiras, cebolla  y cheddar", disponible: true , img:"./imgs/Philly_steak.webp", cantidad:1} ,
-    { id: 9, titulo: "Nuggets", icono:"🥨"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp", cantidad:1} ,
-    { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
-    { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
-    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
-    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
+    { id: 1, titulo: "Raices" , icono:"1" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
+    { id: 2, titulo: "Autorretrato", icono:"2"  , precio:1800, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, bacon", disponible: true, img:"./imgs/autotriplechica.webp", cantidad:1 } ,
+    { id: 3, titulo: "Vincent", icono:"3"  , precio:2400, ingredientes: "Pan de papa, cuatro quesos, carne 100% vacuna, salsa criolla", disponible: true, img:"./imgs/Vangoghchica.webp", cantidad:1 } ,
+    { id: 4, titulo: "Girasoles", icono:"4"  , precio:2000, ingredientes: "Pan de papa, medallón NotBurger, cebolla grillada, champis", disponible: true , img:"./imgs/girasoleschica.webp", cantidad:1} ,
+    { id: 5, titulo: "Noche Estrellada", icono:"5"  , precio:1900, ingredientes: "Pan de papa, medallón de carne, cebolla caramelizada, cheddar", disponible: true , img:"./imgs/viñedochica.webp", cantidad:1} ,
+    { id: 6, titulo: "Cuervos", icono:"6"  , precio:2150, ingredientes: "Pan de papa, medallón de carne, que azul, queso crema, nuez", disponible: true , img:"./imgs/CuervosChica.webp", cantidad:1} ,
+    { id: 7, titulo: "Pollo grill", icono:"7"  , precio:1400, ingredientes: "Pan de viena, pollo en cubos,cebolla  y cheddar", disponible: true , img:"./imgs/sangu_de_pollo.webp", cantidad:1} ,
+    { id: 8, titulo: "Philly steak", icono:"8"  , precio:1400, ingredientes: "Pan de viena, carne asada en tiras, cebolla  y cheddar", disponible: true , img:"./imgs/Philly_steak.webp", cantidad:1} ,
+    { id: 9, titulo: "Nuggets", icono:"9"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp", cantidad:1} ,
+    { id: 10, titulo: "Aros de cebolla", icono:"10"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
+    { id: 11, titulo: "Vangogh", icono:"11"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
+    { id: 12, titulo: "Cheddar", icono:"11"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
+    { id: 12, titulo: "Cheddar", icono:"11"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
 
   ]
 
