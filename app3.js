@@ -1,9 +1,8 @@
 window.addEventListener('load', function () {
-  let carrito = [] =  JSON.parse(localStorage.getItem("carrito")) 
+  let carrito = []  
+  loadLocalStorage ()
 
-    
 
-  
   const  hamburguesas = [
   
     { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
@@ -17,7 +16,6 @@ window.addEventListener('load', function () {
     { id: 9, titulo: "Nuggets", icono:"🥨"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp", cantidad:1} ,
     { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
     { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
-    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
     { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
 
   ]
@@ -60,7 +58,15 @@ const carritoStr = JSON.stringify(carrito)
   localStorage.setItem( "carrito", `${carritoStr}`)
 }
 
+function loadLocalStorage () {
+    if (localStorage.getItem("carrito")) {
+      carrito  = JSON.parse(localStorage.getItem("carrito"))
 
+    } else {
+      
+    }
+
+}
 
     //////////////////////////////////////////////
 // CONDICIONAL PARA MOSTRAR CARRITO O NO //
