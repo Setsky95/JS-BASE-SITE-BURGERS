@@ -177,7 +177,7 @@ function actualizarPreciofinal () {
   
     const precioCarrito = document.getElementById("precioCarrito")
     precioCarrito.innerHTML= `
-    <h2 class="texto-carrito text-center"> TOTAL $ ${precioFinal}  </h2>
+    <h2 class="texto-carrito  d-flex justify-content-end"> TOTAL $ ${precioFinal}  </h2>
    
     ` 
   }
