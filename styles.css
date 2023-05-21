@@ -9,7 +9,7 @@
 }
 
   .texto-resultado {
-    font-family: 'oswald', cursive,  Arial, sans-serif;
+    font-family: 'oswald', cursive, 'Times New Roman', Times, serif  Arial, sans-serif;
     text-align: center;
     color: aliceblue;
 
@@ -23,7 +23,7 @@
 
   .texto-web {
     color: aliceblue;
-    font-family: 'oswald', cursive,  Arial, sans-serif;
+    font-family: 'oswald', cursive, 'Times New Roman', Times, serif  Arial, sans-serif;
     font-weight: 600;
     font-size: 1,8rem;
 
@@ -36,7 +36,7 @@
   }
   .texto-carrito {
     color: aliceblue;
-    font-family: 'oswald', cursive,  Arial, sans-serif;
+    font-family: 'oswald', cursive, 'Times New Roman', Times, serif  Arial, sans-serif;
     font-weight: 300;
     font-size: 0.92rem;
 
