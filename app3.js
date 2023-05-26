@@ -139,7 +139,7 @@ ocultarCarritovacio  ()
   <button type="button" class="sumaCantidad btn btn-outline-light border border-0">+</button>
 </div>
 
-<div class="btn-group">
+<div class="container -fluid btn-group">
   <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
   <label class="btn btn-outline-light border border-0" for="simple${productoElegido.titulo}">simple</label>
 
