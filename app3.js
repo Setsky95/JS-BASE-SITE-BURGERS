@@ -11,10 +11,13 @@ window.addEventListener('load', function () {
 //////////////////////////////////////////////
 
   const contenedorProductos = document.querySelector (".contenedorProductos")
-  fetch(`data.json`)
-  .then ((res) => res.json())
-  .then((hamburguesas) =>  
-  hamburguesas.forEach(hamburguesa =>  { 
+
+
+  const pedirHamburguesas  = async () => {
+    const resp = await fetch(`data.json`)
+    const hamburguesas = await resp.json() 
+ 
+  hamburguesas.forEach((hamburguesa =>  { 
     const contenedor = document.createElement(`article`);
     contenedor.classList.add(`hamburguesa`);
     contenedor.innerHTML= 
@@ -33,9 +36,11 @@ window.addEventListener('load', function () {
 
     `
     contenedorProductos.appendChild (contenedor)
-  }));
-  
+    
+  }))
+}
 
+pedirHamburguesas()
   //////////////////////////////////
   //FUNCIÓN PARA GUARDAR  Y CARGAR EN EL STORAGE//
   ///////////////////////////////
@@ -47,7 +52,6 @@ const carritoStr = JSON.stringify(carrito)
 function loadLocalStorage () {
     if (localStorage.getItem("carrito")) {
       carrito  = JSON.parse(localStorage.getItem("carrito"))
-
     } else {
       
     }
@@ -78,6 +82,7 @@ ocultarCarritovacio  ()
   /* PUSH X INDICE  
   carrito.push(hamburguesas[5]);  
   */
+
 
  //////////////////////////////////////////
  // FUNCION TOASTY TOQUETEADA //
@@ -128,10 +133,24 @@ ocultarCarritovacio  ()
 
     <div class=" d-flex justify-content-between align-items-center">
     
-    <button type="button" class="borrarDelcarrito btn btn-dark p-1">Borrar del pedido</a> 
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+  <button type="button" class="restaCantidad btn btn-outline-light border border-0">-</button>
+  <button type="button" class="btn btn-outline-light border border-0">${productoElegido.cantidad}</button>
+  <button type="button" class="sumaCantidad btn btn-outline-light border border-0">+</button>
+</div>
+
+<div class="btn-group">
+  <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
+  <label class="btn btn-outline-light border border-0" for="simple${productoElegido.titulo}">simple</label>
+
+  <input type="radio" class="doble btn-check" name="btnradio ${productoElegido.titulo}" id="doble${productoElegido.titulo}" autocomplete="off">
+  <label class="btn btn-outline-light border border-0" for="doble${productoElegido.titulo}">doble</label>
+
+  <input type="radio" class="triple btn-check" name="btnradio ${productoElegido.titulo}" id="triple${productoElegido.titulo}" autocomplete="off">
+  <label class="btn btn-outline-light border border-0" for="triple${productoElegido.titulo}">triple</label>
+</div>
     </div>
     <div class=" d-flex justify-content-end align-items-center">
-   <h4 class="cantidadProducto texto-carrito" id="${productoElegido.id}">${productoElegido.cantidad} x-</h4>
     <h3 class="texto-carrito ">  $${productoElegido.precio}  </h3> 
 </div>
 </div>
@@ -140,14 +159,14 @@ ocultarCarritovacio  ()
     `;
 
     contenedorCarrito.appendChild (contenedor2)
+    actualizarPreciofinal ()
     saveLocalStorage ();
 
   });
 }
 
-function actualizarExistente () {
 
-}
+
 actualizarCarrito2 () //PARA QUE MUESTRE EL CARRITO GUARDADO EN EL LOCAL STORAGE //
 
 //////////////////////////////////////////////
@@ -168,7 +187,6 @@ function actualizarPreciofinal () {
     ` 
   }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //FUNCION DE FIND PARA VERIFICAR SI EL PRODUCTO ESTÁ REPETIDO EN EL ARRAY CARRITO Y PUSHEAR O MODIFICAR CANTIDAD.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -180,20 +198,19 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
     const productoSeleccionado = hamburguesas[index];
     const productoRepetido = carrito.find((p) => p.id === productoSeleccionado.id);
 
+
+    
     if (productoRepetido) {
       productoRepetido.cantidad++; 
-      actualizarPreciofinal();
       actualizarCarrito2();
       toastifyNotification () 
-
+    
     } else {
       carrito.push({...productoSeleccionado}); 
       toastifyNotification () 
    
-    
     actualizarCarrito2();
     ocultarCarritovacio();
-    actualizarPreciofinal();
      }
   });
 }));
@@ -201,7 +218,7 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 
 
 
- 
+
 
 
 
@@ -215,7 +232,6 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
   vaciarCarrito.onclick = function () {
   const carritoVaciado = carrito.splice(0)
   actualizarCarrito2 ();
-  actualizarPreciofinal ();
   ocultarCarritovacio  ();
   saveLocalStorage (); 
 
@@ -223,39 +239,92 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
   const textoCarrito = document.querySelector("#precioCarrito").textContent = `El plato está vacío`;
   }
     //////////////////////////////////////////////
-// ElIMINAR UN ELEMENTO A PARTIR DE UN EVENTO EN EL PADRE DEL HTML
+// MODIFICAR CANTIDAD A PARTIR DE UN EVENTO EN EL PADRE DEL HTML
 //( NO FUNCIONABA DIRECTAMENTE SOBRE EL BOTON YA QUE NO ESTABA CARGADO)//
     //////////////////////////////////////////////
 
-    const contenedorCarrito = document.querySelector("#contenedorCarrito");
 
+
+     const contenedorCarrito = document.querySelector("#contenedorCarrito");
     contenedorCarrito.addEventListener("click", (event) => {
-      if (event.target.classList.contains("borrarDelcarrito")) {
+      if (event.target.classList.contains("sumaCantidad")) {
         const boton = event.target;
         const producto = boton.closest(".productoElegido");
-    
+
         const index = Array.from(contenedorCarrito.children).indexOf(producto);
-    
-    
-          carrito.splice(index, 1);
-          actualizarCarrito2();
-          actualizarPreciofinal();
-          ocultarCarritovacio  ();
-          saveLocalStorage ();
+
+        carrito[index].cantidad++;
+        actualizarCarrito2();
+        ocultarCarritovacio();
+
 
       }
-    });
+
+      if (event.target.classList.contains("restaCantidad")) {
+        const boton = event.target;
+        const producto = boton.closest(".productoElegido");
+
+        const index = Array.from(contenedorCarrito.children).indexOf(producto);
+
+        carrito[index].cantidad--;
+        
+        if (carrito[index].cantidad <= 0) {
+          carrito.splice(index, 1);
+        
+        }
+        actualizarCarrito2();
+        ocultarCarritovacio();
+      }
+/////////////////////////////////////////////////////////////////////////////////////////////
+// MODIFICADOR PARA DOBLE | TRIPLE | SIMPLE (SIGUE MIRANDO EVENTOS EN EL CONTENEDOR)//
+// CARNES 1 = SIMPLE CARNES 2 = DOBLES CARNES 3 = TRIPLES//
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
+       if (event.target.classList.contains("doble")) {
+        const boton = event.target;
+      const producto = boton.closest(".productoElegido");
+
+      const index = Array.from(contenedorCarrito.children).indexOf(producto);
+
+      carrito[index].precio = (carrito[index].precioDoble);
+      carrito[index].carnes = 3;
+      actualizarCarrito2();
+      ocultarCarritovacio();
+
+    }
+
+    if (event.target.classList.contains("triple")) {
+      const boton = event.target;
+      const producto = boton.closest(".productoElegido");
+
+      const index = Array.from(contenedorCarrito.children).indexOf(producto);
+
+      carrito[index].precio = (carrito[index].precioTriple);
+      carrito[index].carnes = 3
+      actualizarCarrito2();
+      ocultarCarritovacio();
+    }
+
+    if (event.target.classList.contains("simple")) {
+      const boton = event.target;
+      const producto = boton.closest(".productoElegido");
+
+      const index = Array.from(contenedorCarrito.children).indexOf(producto);
+
+      carrito[index].precio = (carrito[index].precioSimple);
+      carrito[index].carnes = 1
+      actualizarCarrito2();
+      ocultarCarritovacio();
+    }
 
 
- // MUESTRA DE PRODUCTOS EN CARRITO  //
-  
-/*   const textoCarrito = document.querySelector("#carritofinal").textContent=
-  `El plato está vacío`
-   */
-  
-  
+     
+    }); 
+    console.log(carrito)
+
+
+ 
     //////////////////////////////////////////////
 
 
@@ -290,7 +359,6 @@ const enviarPorWhatsApp = () => {
 };
 
 document.getElementById('finalizarPedido').addEventListener('click', enviarPorWhatsApp);
-console.log (carrito)
 
   
   })
