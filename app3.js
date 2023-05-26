@@ -3,31 +3,17 @@ window.addEventListener('load', function () {
   loadLocalStorage ()
 
 
-  const  hamburguesas = [
-  
-    { id: 1, titulo: "Raices" , icono:"🍔" ,precio:2500, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, pepino", disponible: true, img:"./imgs/RaicesChica.webp", cantidad:1} ,
-    { id: 2, titulo: "Autorretrato", icono:"🍔"  , precio:1800, ingredientes:"Pan de papa, queso cheddar, carne 100% vacuna, bacon", disponible: true, img:"./imgs/autotriplechica.webp", cantidad:1 } ,
-    { id: 3, titulo: "Vincent", icono:"🍔"  , precio:2400, ingredientes: "Pan de papa, cuatro quesos, carne 100% vacuna, salsa criolla", disponible: true, img:"./imgs/Vangoghchica.webp", cantidad:1 } ,
-    { id: 4, titulo: "Girasoles", icono:"🍔"  , precio:2000, ingredientes: "Pan de papa, medallón NotBurger, cebolla grillada, champis", disponible: true , img:"./imgs/girasoleschica.webp", cantidad:1} ,
-    { id: 5, titulo: "Noche Estrellada", icono:"🍔"  , precio:1900, ingredientes: "Pan de papa, medallón de carne, cebolla caramelizada, cheddar", disponible: true , img:"./imgs/viñedochica.webp", cantidad:1} ,
-    { id: 6, titulo: "Cuervos", icono:"🍔"  , precio:2150, ingredientes: "Pan de papa, medallón de carne, que azul, queso crema, nuez", disponible: true , img:"./imgs/CuervosChica.webp", cantidad:1} ,
-    { id: 7, titulo: "Pollo grill", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, pollo en cubos,cebolla  y cheddar", disponible: true , img:"./imgs/sangu_de_pollo.webp", cantidad:1} ,
-    { id: 8, titulo: "Philly steak", icono:"🥪"  , precio:1400, ingredientes: "Pan de viena, carne asada en tiras, cebolla  y cheddar", disponible: true , img:"./imgs/Philly_steak.webp", cantidad:1} ,
-    { id: 9, titulo: "Nuggets", icono:"🥨"  , precio:1100, ingredientes: "Nuggets de pollo fritos con diversas salsas", disponible: true , img:"./imgs/Nuggets-pollo.webp", cantidad:1} ,
-    { id: 10, titulo: "Aros de cebolla", icono:"🥨"  , precio:1000, ingredientes: "Aros empanados fritos, con barbacoa casera", disponible: true , img:"./imgs/onion.rings.webp", cantidad:1} ,
-    { id: 11, titulo: "Vangogh", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa  ", disponible: true , img:"./imgs/papas_vangogh.webp", cantidad:1} ,
-    { id: 12, titulo: "Cheddar", icono:"🍟"  , precio:1100, ingredientes: "Papas fritas, queso cheddar, panceta, crema y verdeo.    ", disponible: true , img:"./imgs/papas_cheddar.webp", cantidad:1} ,
 
-  ]
-
-
+ 
 
   //////////////////////////////////////////////
 //FOR EACH PARA RENDERIZAR TODO EL ARRAY HAMBURGUESAS
 //////////////////////////////////////////////
 
   const contenedorProductos = document.querySelector (".contenedorProductos")
-
+  fetch(`data.json`)
+  .then ((res) => res.json())
+  .then((hamburguesas) =>  
   hamburguesas.forEach(hamburguesa =>  { 
     const contenedor = document.createElement(`article`);
     contenedor.classList.add(`hamburguesa`);
@@ -47,7 +33,7 @@ window.addEventListener('load', function () {
 
     `
     contenedorProductos.appendChild (contenedor)
-  });
+  }));
   
 
   //////////////////////////////////
@@ -186,11 +172,12 @@ function actualizarPreciofinal () {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //FUNCION DE FIND PARA VERIFICAR SI EL PRODUCTO ESTÁ REPETIDO EN EL ARRAY CARRITO Y PUSHEAR O MODIFICAR CANTIDAD.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+fetch(`data.json`)
+.then ((res) => res.json())
+.then((hamburguesas) =>  
 document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
   boton.addEventListener('click', () => {
     const productoSeleccionado = hamburguesas[index];
-
     const productoRepetido = carrito.find((p) => p.id === productoSeleccionado.id);
 
     if (productoRepetido) {
@@ -209,11 +196,10 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
     actualizarPreciofinal();
      }
   });
-});
+}));
 
 
 
-console.log (carrito)
 
  
 
@@ -222,17 +208,18 @@ console.log (carrito)
  /////////////////////////////////////////////
  // VACIAR EL CARRITO Guardar los datos en una variable (para algo servirá)  //
   //////////////////////////////////////////////
-
+ 
   
   const vaciarCarrito = document.getElementById('btnVaciado');
+  
   vaciarCarrito.onclick = function () {
   const carritoVaciado = carrito.splice(0)
   actualizarCarrito2 ();
   actualizarPreciofinal ();
   ocultarCarritovacio  ();
-  saveLocalStorage ();
+  saveLocalStorage (); 
 
-
+  
   const textoCarrito = document.querySelector("#precioCarrito").textContent = `El plato está vacío`;
   }
     //////////////////////////////////////////////
@@ -303,6 +290,7 @@ const enviarPorWhatsApp = () => {
 };
 
 document.getElementById('finalizarPedido').addEventListener('click', enviarPorWhatsApp);
+console.log (carrito)
 
   
   })
