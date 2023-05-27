@@ -52,29 +52,40 @@ const carritoStr = JSON.stringify(carrito)
 function loadLocalStorage () {
     if (localStorage.getItem("carrito")) {
       carrito  = JSON.parse(localStorage.getItem("carrito"))
+      
     } else {
       
     }
 
 }
+   //// //////////////////////////////////////////////
+// BOTON CARRITO //
+/////////////////////////////////////
+
 
     //////////////////////////////////////////////
-// CONDICIONAL PARA MOSTRAR CARRITO O NO //
+// CONDICIONAL PARA MOSTRAR CARRITO Y BTN CARRITO //
 //////////////////////////////////////////////
 
 const mostrarCarrito = document.getElementById ("carritoOn")
 const mostrarCierre = document.getElementById("finishOn")
 const backHomeBtn = document.getElementById ("backHomeBtn")
+const btnCarrito = document.getElementById ("btnCarrito")
+
 function ocultarCarritovacio  () {
 if (carrito.length >= 1) {
 mostrarCierre.style.display = "block";
 mostrarCarrito.style.display = "block";
 backHomeBtn.style.display = "none";
+btnCarrito.style.display = "block";
+
 
 } else {
 backHomeBtn.style.display = "block";
  mostrarCarrito.style.display = "none";
  mostrarCierre.style.display = "none";
+ btnCarrito.style.display = "none";
+
 
 }
 }
@@ -102,7 +113,8 @@ ocultarCarritovacio  ()
     background: "#5d5a5a",
     borderRadius: "8px",
     boxShadow: "none",
-    fontFamily: "'oswald', cursive"
+    fontFamily: "'oswald', 'Times New Roman', Times, serif  Arial, sans-serif"
+    
   },
   onClick: function(){} // Callback after click
 }).showToast();
@@ -114,56 +126,62 @@ ocultarCarritovacio  ()
 
 
 
-  function actualizarCarrito2 (){
+function actualizarCarrito2() {
+  const contenedorCarrito = document.querySelector("#contenedorCarrito");
+  while (contenedorCarrito.firstChild) {
+    contenedorCarrito.removeChild(contenedorCarrito.firstChild);
+  }
 
-    const contenedorCarrito = document.querySelector ("#contenedorCarrito")
-    while (contenedorCarrito.firstChild) {
-      contenedorCarrito.removeChild(contenedorCarrito.firstChild);
-    }
-
-  
-  carrito.forEach(productoElegido =>  { 
-    const contenedor2 = document.createElement(`article`);
-    contenedor2.classList.add(`productoElegido`);
+  carrito.forEach((productoElegido) => {
+    const contenedor2 = document.createElement("article");
+    contenedor2.classList.add("productoElegido");
     contenedor2.innerHTML = `
-    
-    <div class=" row  row-cols-md-3  g-3   border-dark card-sm bg-transparent  d-flex  justify-content-start align-items-center" ">
-    <div class=" d-flex justify-content-start align-items-center">
-    <h2 class="texto-carrito"> ${productoElegido.icono}  ${productoElegido.titulo}  </h2></div>
+      <div class="row row-cols-md-3 g-3 border-dark card-sm bg-transparent d-flex justify-content-start align-items-center">
+        <div class="d-flex justify-content-start align-items-center">
+          <h2 class="texto-carrito">${productoElegido.icono} ${productoElegido.titulo}</h2>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="restaCantidad btn btn-outline-light border border-0">-</button>
+            <button type="button" class="btn btn-outline-light border border-0">${productoElegido.cantidad}</button>
+            <button type="button" class="sumaCantidad btn btn-outline-light border border-0">+</button>
+          </div>
+          <div class="dcontainer-fluid" id="${productoElegido.tipo}">
+            <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
+            <label class="btn btn-outline-light border border-0" for="simple${productoElegido.titulo}">simple</label>
 
-    <div class=" d-flex justify-content-between align-items-center">
-    
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-  <button type="button" class="restaCantidad btn btn-outline-light border border-0">-</button>
-  <button type="button" class="btn btn-outline-light border border-0">${productoElegido.cantidad}</button>
-  <button type="button" class="sumaCantidad btn btn-outline-light border border-0">+</button>
-</div>
+            <input type="radio" class="doble btn-check" name="btnradio ${productoElegido.titulo}" id="doble${productoElegido.titulo}" autocomplete="off">
+            <label class="btn btn-outline-light border border-0" for="doble${productoElegido.titulo}">doble</label>
 
-<div class="container-fluid btn-group">
-  <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
-  <label class="btn btn-outline-light border border-0" for="simple${productoElegido.titulo}">simple</label>
-
-  <input type="radio" class="doble btn-check" name="btnradio ${productoElegido.titulo}" id="doble${productoElegido.titulo}" autocomplete="off">
-  <label class="btn btn-outline-light border border-0" for="doble${productoElegido.titulo}">doble</label>
-
-  <input type="radio" class="triple btn-check" name="btnradio ${productoElegido.titulo}" id="triple${productoElegido.titulo}" autocomplete="off">
-  <label class="btn btn-outline-light border border-0" for="triple${productoElegido.titulo}">triple</label>
-</div>
-    </div>
-    <div class=" d-flex justify-content-end align-items-center">
-    <h3 class="texto-carrito ">  $${productoElegido.precio}  </h3> 
-</div>
-</div>
-
-
+            <input type="radio" class="triple btn-check" name="btnradio ${productoElegido.titulo}" id="triple${productoElegido.titulo}" autocomplete="off">
+            <label class="btn btn-outline-light border border-0" for="triple${productoElegido.titulo}">triple</label>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end align-items-center">
+          <h3 class="texto-carrito">$${productoElegido.precio}</h3>
+        </div>
+      </div>
     `;
 
-    contenedorCarrito.appendChild (contenedor2)
-    actualizarPreciofinal ()
-    saveLocalStorage ();
+// DETECTAR SI ES BURGER O NO PARA MOSTRAR "SIMPLE,DOBLE,TRIPLE"//
+    const btnOculto = contenedor2.querySelectorAll("#noBurger");
 
+    function ocultarbtnDoble() {
+      btnOculto.forEach((botones) => {
+        botones.style.display = "none";
+      });
+    }
+
+    ocultarbtnDoble();
+    contenedorCarrito.appendChild(contenedor2);
+
+    actualizarPreciofinal();
+    saveLocalStorage();
   });
 }
+
+
+    
 
 
 
@@ -186,6 +204,7 @@ function actualizarPreciofinal () {
    
     ` 
   }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //FUNCION DE FIND PARA VERIFICAR SI EL PRODUCTO ESTÁ REPETIDO EN EL ARRAY CARRITO Y PUSHEAR O MODIFICAR CANTIDAD.
@@ -216,9 +235,7 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 }));
 
 
-
-
-
+//////////////////////////////////
 
 
 
@@ -256,6 +273,8 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
         carrito[index].cantidad++;
         actualizarCarrito2();
         ocultarCarritovacio();
+        saveLocalStorage ();
+
 
 
       }
@@ -274,6 +293,8 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
         }
         actualizarCarrito2();
         ocultarCarritovacio();
+        saveLocalStorage ();
+
       }
 /////////////////////////////////////////////////////////////////////////////////////////////
 // MODIFICADOR PARA DOBLE | TRIPLE | SIMPLE (SIGUE MIRANDO EVENTOS EN EL CONTENEDOR)//
@@ -318,16 +339,17 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
       ocultarCarritovacio();
     }
 
-
+   
+      
+      
      
     }); 
+
     console.log(carrito)
 
 
+
  
-    //////////////////////////////////////////////
-
-
 
   //CONSOLA //
 /*   

@@ -11,6 +11,7 @@
       "disponible": true,
       "img": "./imgs/RaicesChica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
     },
     {
@@ -25,6 +26,7 @@
       "disponible": true,
       "img": "./imgs/autotriplechica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
 
     },
@@ -40,6 +42,7 @@
       "disponible": true,
       "img": "./imgs/Vangoghchica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
     },
     {
@@ -54,6 +57,7 @@
       "disponible": true,
       "img": "./imgs/girasoleschica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
     },
     {
@@ -68,6 +72,7 @@
       "disponible": true,
       "img": "./imgs/viñedochica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
     },
     {
@@ -82,6 +87,7 @@
       "disponible": true,
       "img": "./imgs/CuervosChica.webp",
       "cantidad": 1,
+      "tipo": "burger",
       "carnes":1
     },
     {
@@ -93,6 +99,7 @@
       "ingredientes": "Pan de viena, pollo en cubos,cebolla  y cheddar",
       "disponible": true,
       "img": "./imgs/sangu_de_pollo.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     },
     {
@@ -103,6 +110,7 @@
       "ingredientes": "Pan de viena, carne asada en tiras, cebolla  y cheddar",
       "disponible": true,
       "img": "./imgs/Philly_steak.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     },
     {
@@ -113,6 +121,7 @@
       "ingredientes": "Nuggets de pollo fritos con diversas salsas",
       "disponible": true,
       "img": "./imgs/Nuggets-pollo.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     },
     {
@@ -123,6 +132,7 @@
       "ingredientes": "Aros empanados fritos, con barbacoa casera",
       "disponible": true,
       "img": "./imgs/onion.rings.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     },
     {
@@ -133,6 +143,7 @@
       "ingredientes": "Papas fritas, queso cheddar, panceta, crema y verdeo. Especiales de la casa",
       "disponible": true,
       "img": "./imgs/papas_vangogh.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     },
     {
@@ -143,6 +154,7 @@
       "ingredientes": "Papas fritas, queso cheddar, panceta, crema y verdeo.",
       "disponible": true,
       "img": "./imgs/papas_cheddar.webp",
+      "tipo": "noBurger",
       "cantidad": 1
     }
   ]
