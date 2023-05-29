@@ -58,9 +58,7 @@ function loadLocalStorage () {
     }
 
 }
-   //// //////////////////////////////////////////////
-// BOTON CARRITO //
-/////////////////////////////////////
+
 
 
     //////////////////////////////////////////////
@@ -148,7 +146,7 @@ function actualizarCarrito2() {
           </div>
           <div class="dcontainer-fluid" id="${productoElegido.tipo}">
             <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
-            <label class="btn btn-outline-light border border-0" for="simple${productoElegido.titulo}">simple</label>
+            <label class=" btn btn-outline-light border border-0 " for="simple${productoElegido.titulo}">simple</label>
 
             <input type="radio" class="doble btn-check" name="btnradio ${productoElegido.titulo}" id="doble${productoElegido.titulo}" autocomplete="off">
             <label class="btn btn-outline-light border border-0" for="doble${productoElegido.titulo}">doble</label>
@@ -347,41 +345,48 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 
     console.log(carrito)
 
+///////////////////////////////////
+// SUCCES//
+//////////////////////////////////////
+function btnSucces (){
+  Swal.fire({
+    position: 'center-center',
+    icon: 'success',
+    title: '¡Pedido realizado!',
+    color:  `rgb(51,51,51)` ,
+    showConfirmButton: false,
+    timer: 2200
+  })
 
 
- 
+  }
+const finalizar = document.getElementById(`finalizarPedido`)
+finalizar.addEventListener(`click`, btnSucces)
 
-  //CONSOLA //
-/*   
-  console.log(carrito)
-  console.log(`el pedido es ${carritoFinal}`)
-   */
 
     //////////////////////////////////////////////
 //enviar pedido x wsp //
     //////////////////////////////////////////////
 
-const enviarPorWhatsApp = () => {
-  const numeroTelefono = '+542214944050';
-
-  let mensaje = "¡Hola! Quiero hacer este pedido";
-  carrito.forEach((producto) => {
-    const { icono, titulo, cantidad, precio } = producto;
-    mensaje += `:\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n`;
-  });
-
-  let precioTotal = carrito.reduce((acumulado, burger, )=>{
-    const subtotal = burger.precio * burger.cantidad;
-    return acumulado + subtotal
-  }, 0)
-  mensaje += `Precio final: ${precioTotal}`;
-
-  const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
-};
-
-document.getElementById('finalizarPedido').addEventListener('click', enviarPorWhatsApp);
-
+   /*  const enviarPorWhatsApp = () => {
+      const numeroTelefono = '+542214944050';
+    
+      let mensaje = "¡Hola! Quiero hacer este pedido";
+      carrito.forEach((producto) => {
+        const { icono, titulo, cantidad, precio } = producto;
+        mensaje += `:\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n`;
+      });
+    
+      let precioTotal = carrito.reduce((acumulado, burger, )=>{
+        const subtotal = burger.precio * burger.cantidad;
+        return acumulado + subtotal
+      }, 0)
+      mensaje += `Precio final: ${precioTotal}`;
+    
+      const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    };
+     */
   
   })
 
