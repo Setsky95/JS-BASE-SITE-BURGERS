@@ -345,59 +345,47 @@ if (event.target.classList.contains("doble")) {
 //FINALIZACION //
 //////////////////////////////////////
 
-let inputName = document.querySelector("#inputName")
-let inputAdress = document.querySelector("#inputAdress")
-let  inputPhone = document.querySelector("#inputPhone")
-let formulario = document.querySelector("#formulario")
+let inputName = document.querySelector("#inputName");
+let inputAdress = document.querySelector("#inputAdress");
+let inputPhone = document.querySelector("#inputPhone");
+let formulario = document.querySelector("#formulario");
 
-formulario.addEventListener("submit", finishing)
-function finishing (e){
-  if (inputName.value === "" || inputAdress.value === "" || inputPhone.value === "") {
-    e.preventDefault(),
-    alertFailure();
-    function alertFailure () {
+formulario.addEventListener("submit", finishing);
+function finishing(e) {
+  if (
+    inputName.value === "" ||
+    inputAdress.value === "" ||
+    inputPhone.value === ""
+  ) {
+    e.preventDefault(), alertFailure();
+    function alertFailure() {
       Swal.fire({
-        position: 'center-center',
-        icon: 'warning',
-        title:`Recordá completar todos los datos`,
-        color:  `rgb(51,51,51)` ,
+        position: "center-center",
+        icon: "warning",
+        title: `Recordá completar todos los datos`,
+        color: `rgb(51,51,51)`,
         showConfirmButton: false,
-        timer: 2800
-        
-      })
-
-        
-    
+        timer: 2800,
+      });
     }
   } else {
-    
-  
-  e.preventDefault(),
-  alertSucces (),
- 
-  saveClientStorage ();
+    e.preventDefault(), alertSucces(), saveClientStorage();
 
-  function alertSucces () {
-    Swal.fire({
-      position: 'center-center',
-      icon: 'success',
-      title:` ¡Gracias ${inputName.value}!<h4> te daremos aviso apenas esté en camino</h4>`,
-      color:  `rgb(51,51,51)` ,
-      showConfirmButton: false,
-      timer: 3200
-      
-    })
-  
-    enviarPorWhatsApp  ()
+    function alertSucces() {
+      Swal.fire({
+        position: "center-center",
+        icon: "success",
+        title: ` ¡Gracias ${inputName.value}!<h4> te daremos aviso apenas esté en camino</h4>`,
+        color: `rgb(51,51,51)`,
+        showConfirmButton: false,
+        timer: 3200,
+      });
 
+      enviarPorWhatsApp();
+    }
   }
-  
-  
- 
 }
-
-
-  }
+   /////////////CARGAR DATOS CLIENTE EN EL LOCAL ///////
   loadCliente ()
   function loadCliente () {
     if (localStorage.getItem("direccion")) {
@@ -417,21 +405,10 @@ function finishing (e){
     localStorage.setItem( "direccion", `${direccionStr}`)
     const nombreStr = JSON.stringify(inputName.value)
     localStorage.setItem( "nombre", `${nombreStr}`)
-  
-  
   }
-/////////////////////////////////////////////////
-
-
-
-
-
-
-
-
 
     //////////////////////////////////////////////
-//enviar pedido x wsp //
+//ENVIAR PEDIDO X WSP (EXPORTADOR DE ÓRDENES) //
     //////////////////////////////////////////////
 
    function enviarPorWhatsApp() {
@@ -460,7 +437,7 @@ function finishing (e){
     
       const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
       window.open(url, );
-    }, 5000);    };
+    }, 4700);    };
      
   
   })
