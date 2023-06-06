@@ -49,28 +49,39 @@
         <div classs="rounded border border-white" id="precioCarrito"></div>
 
     </div>
-    <form class=" contenedor-fluid d-flex input-group justify-content-center my-5">
+    <form class=" contenedor-fluid d-flex input-group justify-content-center my-5" id="formulario">
       <div class="contenedor-labels px-2 text-center ">
-      <span class="texto-web  my-1">Nombre</span>
-      <input type="text" name="nombre" aria-label="First name" class="form-control"></div>
+        <span class="texto-web  my-1">Nombre</span>
+        <input type="text" name="nombre" aria-label="First name" class="form-control" id="inputName">
+      </div>
       <div class="contenedor-labels px-2 text-center">
-      <span class="texto-web  my-1">Dirección completa</span>
-      <input type="text" name="direccion" aria-label="First name" class="form-control"></div>
+        <span class="texto-web  my-1">Dirección completa</span>
+        <input type="text" name="direccion" aria-label="First name" class="form-control" id="inputAdress">
+      </div>
       <div class="contenedor-labels px-2 text-center">
-      <span class="texto-web  my-1">Teléfono</span>
-      <input type="text" name="telefono" aria-label="First name" class="form-control"></div>
-    </div></div></form>
+        <span class="texto-web  my-1">Teléfono</span>
+        <input type="text" name="telefono" aria-label="First name" class="form-control" id="inputPhone">
+      </div>
     
-</div>
-<div class="container" id="finishOn" >
-<div    class="d-flex container-btn justify-content-center my-5">
-    <button type="button" id="btnVaciado" class="btn btn-outline-light mx-2"> <h5 class="texto-web my-0"> VACIAR CARRITO</h5></button>
-    <button  id="finalizarPedido" class="btn btn-outline-light mx-2 "> <h5 class="texto-web my-0">FINALIZAR</h5></button></div>
-</div>
+      </div>
+      <div class="container" id="finishOn">
+        <div class="d-flex container-btn justify-content-center my-5">
+          <button id="finalizarPedido" class="btn btn-outline-light mx-2 " type="submit">
+            <h5 class="texto-web my-0">FINALIZAR</h5>
+          </button>
+          <button type="button" id="btnVaciado" class="btn btn-outline-light mx-2">
+            <h5 class="texto-web my-0"> VACIAR CARRITO</h5>
+          </button>
+        </div>
+      </div>
+      </div>
+    </form>
+    </div>
+
 
 
 <div id="backHomeBtn" class="container my-5 text-center">
-    <a class="btn btn-outline-light mx-2 "  href="#inicioWeb"> <h5 class="texto-web my-0"> INICIO</h5></a>
+    <a class="btn btn-outline-light mx-2 "   href="#inicioWeb"> <h5 class="texto-web my-0"> INICIO</h5></a>
 
 
 </div>
@@ -84,11 +95,6 @@
   <img src="./imgs/supermarket_cart_store_market_icon_180221.png" class="img-fluid " alt="logo"  >
 </a> </div>
 <!-- FORMULARIO DIRECCIÓN  -->
-
-
-
-
-
 
 
         <footer class="text-white text-center text-lg-start fotterBG  mt-5" >

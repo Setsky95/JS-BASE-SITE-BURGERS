@@ -145,16 +145,16 @@ function actualizarCarrito2() {
             <button type="button" class="sumaCantidad btn btn-outline-light border border-0">+</button>
           </div>
           <div class="dcontainer-fluid" id="${productoElegido.tipo}">
-            <input type="radio" class="simple btn-check" name="btnradio ${productoElegido.titulo}" id="simple${productoElegido.titulo}" autocomplete="off">
-            <label class=" btn btn-outline-light border border-0 " for="simple${productoElegido.titulo}">simple</label>
-
-            <input type="radio" class="doble btn-check" name="btnradio ${productoElegido.titulo}" id="doble${productoElegido.titulo}" autocomplete="off">
-            <label class="btn btn-outline-light border border-0" for="doble${productoElegido.titulo}">doble</label>
-
-            <input type="radio" class="triple btn-check" name="btnradio ${productoElegido.titulo}" id="triple${productoElegido.titulo}" autocomplete="off">
-            <label class="btn btn-outline-light border border-0" for="triple${productoElegido.titulo}">triple</label>
-          </div>
+          <div class="btn-group" role="group" >
+          <div class="btn-group">
+          <a class="simple btn btn-dark" id="simple">simple</a>
+          <a class="doble btn btn-dark" id="doble">doble</a>
+          <a class="triple btn btn-dark" id="triple">triple</a>
         </div>
+        </div>
+        </div>
+        </div>
+
         <div class="d-flex justify-content-end align-items-center">
           <h3 class="texto-carrito">$${productoElegido.precio}</h3>
         </div>
@@ -172,6 +172,7 @@ function actualizarCarrito2() {
 
     ocultarbtnDoble();
     contenedorCarrito.appendChild(contenedor2);
+
 
     actualizarPreciofinal();
     saveLocalStorage();
@@ -300,19 +301,17 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
-       if (event.target.classList.contains("doble")) {
-        const boton = event.target;
-      const producto = boton.closest(".productoElegido");
+if (event.target.classList.contains("doble")) {
+  const boton = event.target;
+  const producto = boton.closest(".productoElegido");
+  const index = Array.from(contenedorCarrito.children).indexOf(producto);
+  carrito[index].precio = carrito[index].precioDoble;
+  carrito[index].carnes = 3;
+  event.currentTarget.classList.add("btncheck1");
 
-      const index = Array.from(contenedorCarrito.children).indexOf(producto);
-
-      carrito[index].precio = (carrito[index].precioDoble);
-      carrito[index].carnes = 3;
-      actualizarCarrito2();
-      ocultarCarritovacio();
-
-    }
-
+  actualizarCarrito2();
+  ocultarCarritovacio();
+}
     if (event.target.classList.contains("triple")) {
       const boton = event.target;
       const producto = boton.closest(".productoElegido");
@@ -337,7 +336,7 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
       ocultarCarritovacio();
     }
 
-   
+
       
       
      
@@ -348,33 +347,71 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 ///////////////////////////////////
 // SUCCES//
 //////////////////////////////////////
-function btnSucces (){
-  Swal.fire({
-    position: 'center-center',
-    icon: 'success',
-    title: '¡Pedido realizado!',
-    color:  `rgb(51,51,51)` ,
-    showConfirmButton: false,
-    timer: 2200
-  })
+const inputName = document.querySelector("#inputName")
+const inputAdress = document.querySelector("#inputAdress")
+const inputPhone = document.querySelector("#inputPhone")
+const formulario = document.querySelector("#formulario")
+formulario.addEventListener("submit", finishing)
+function finishing (e){
+  e.preventDefault(),
+  alertSucces (),
+  console.log(`nombre: ${inputName.value}`)
+  console.log(`direccion: ${inputAdress.value}`)
+  console.log(`telefono: ${inputPhone.value}`)
 
-
+  if (inputName.value === "" || inputAdress.value === "" || inputPhone.value === "") {
+    alertFailure();
   }
-const finalizar = document.getElementById(`finalizarPedido`)
-finalizar.addEventListener(`click`, btnSucces)
+  
+  function alertSucces () {
+    Swal.fire({
+      position: 'center-center',
+      icon: 'success',
+      title:` ¡Gracias ${inputName.value}!<h4> te daremos aviso apenas esté en camino</h4>`,
+      color:  `rgb(51,51,51)` ,
+      showConfirmButton: false,
+      timer: 3200
+      
+    })
+  
+    enviarPorWhatsApp  ()
+  }
+  function alertFailure () {
+    Swal.fire({
+      position: 'center-center',
+      icon: 'warning',
+      title:`Recordá completar todos los datos`,
+      color:  `rgb(51,51,51)` ,
+      showConfirmButton: false,
+      timer: 2800
+      
+    })
+  
+  
+  }
+  }
+
+/////////////////////////////////////////////////
+
+
+
+
+
+
+
 
 
     //////////////////////////////////////////////
 //enviar pedido x wsp //
     //////////////////////////////////////////////
 
-   /*  const enviarPorWhatsApp = () => {
+   const enviarPorWhatsApp = () => {
       const numeroTelefono = '+542214944050';
     
       let mensaje = "¡Hola! Quiero hacer este pedido";
       carrito.forEach((producto) => {
         const { icono, titulo, cantidad, precio } = producto;
-        mensaje += `:\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n`;
+        mensaje += ` Nombre: ${inputName.value}\n direccion: ${inputAdress.value}\n telefono: ${inputPhone.value}\n////////\nPEDIDO\n///////////\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n ` ;
       });
     
       let precioTotal = carrito.reduce((acumulado, burger, )=>{
@@ -386,7 +423,7 @@ finalizar.addEventListener(`click`, btnSucces)
       const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
       window.open(url, '_blank');
     };
-     */
+     
   
   })
 
