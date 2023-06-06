@@ -1,10 +1,8 @@
 window.addEventListener('load', function () {
   let carrito = []  
   loadLocalStorage ()
+  
 
-
-
- 
 
   //////////////////////////////////////////////
 //FOR EACH PARA RENDERIZAR TODO EL ARRAY HAMBURGUESAS
@@ -52,11 +50,9 @@ const carritoStr = JSON.stringify(carrito)
 function loadLocalStorage () {
     if (localStorage.getItem("carrito")) {
       carrito  = JSON.parse(localStorage.getItem("carrito"))
-      
-    } else {
-      
     }
 
+  
 }
 
 
@@ -343,26 +339,44 @@ if (event.target.classList.contains("doble")) {
     }); 
 
     console.log(carrito)
+///////////////////////
 
 ///////////////////////////////////
-// SUCCES//
+//FINALIZACION //
 //////////////////////////////////////
-const inputName = document.querySelector("#inputName")
-const inputAdress = document.querySelector("#inputAdress")
-const inputPhone = document.querySelector("#inputPhone")
-const formulario = document.querySelector("#formulario")
+
+let inputName = document.querySelector("#inputName")
+let inputAdress = document.querySelector("#inputAdress")
+let  inputPhone = document.querySelector("#inputPhone")
+let formulario = document.querySelector("#formulario")
+
 formulario.addEventListener("submit", finishing)
 function finishing (e){
+  if (inputName.value === "" || inputAdress.value === "" || inputPhone.value === "") {
+    e.preventDefault(),
+    alertFailure();
+    function alertFailure () {
+      Swal.fire({
+        position: 'center-center',
+        icon: 'warning',
+        title:`Recordá completar todos los datos`,
+        color:  `rgb(51,51,51)` ,
+        showConfirmButton: false,
+        timer: 2800
+        
+      })
+
+        
+    
+    }
+  } else {
+    
+  
   e.preventDefault(),
   alertSucces (),
-  console.log(`nombre: ${inputName.value}`)
-  console.log(`direccion: ${inputAdress.value}`)
-  console.log(`telefono: ${inputPhone.value}`)
+ 
+  saveClientStorage ();
 
-  if (inputName.value === "" || inputAdress.value === "" || inputPhone.value === "") {
-    alertFailure();
-  }
-  
   function alertSucces () {
     Swal.fire({
       position: 'center-center',
@@ -375,22 +389,37 @@ function finishing (e){
     })
   
     enviarPorWhatsApp  ()
-  }
-  function alertFailure () {
-    Swal.fire({
-      position: 'center-center',
-      icon: 'warning',
-      title:`Recordá completar todos los datos`,
-      color:  `rgb(51,51,51)` ,
-      showConfirmButton: false,
-      timer: 2800
-      
-    })
-  
-  
-  }
-  }
 
+  }
+  
+  
+ 
+}
+
+
+  }
+  loadCliente ()
+  function loadCliente () {
+    if (localStorage.getItem("direccion")) {
+      inputAdress.value = JSON.parse(localStorage.getItem("direccion"))
+    }
+    if (localStorage.getItem("telefono")) {
+      inputPhone.value = JSON.parse(localStorage.getItem("telefono"))
+    }
+    if (localStorage.getItem("nombre")) {
+      inputName.value = JSON.parse(localStorage.getItem("nombre"))
+    }}
+ /////////////GUARDAR DATOS CLIENTE EN EL LOCAL ///////
+  function saveClientStorage ()  {
+    const telefonoStr = JSON.stringify(inputPhone.value)
+    localStorage.setItem( "telefono", `${telefonoStr}`)
+    const direccionStr = JSON.stringify(inputAdress.value)
+    localStorage.setItem( "direccion", `${direccionStr}`)
+    const nombreStr = JSON.stringify(inputName.value)
+    localStorage.setItem( "nombre", `${nombreStr}`)
+  
+  
+  }
 /////////////////////////////////////////////////
 
 
@@ -405,24 +434,33 @@ function finishing (e){
 //enviar pedido x wsp //
     //////////////////////////////////////////////
 
-   const enviarPorWhatsApp = () => {
+   function enviarPorWhatsApp() {
+    setTimeout(function() {
+
       const numeroTelefono = '+542214944050';
-    
-      let mensaje = ` Nombre: ${inputName.value}\n direccion: ${inputAdress.value}\n telefono: ${inputPhone.value}\n`;
+      const fechaActual = new Date();
+      const datosActuales = {
+        hora: fechaActual.getHours(),
+        minutos: fechaActual.getMinutes()
+      };
+      
+      let mensaje = `*CLIENTE*\n\nNombre: ${inputName.value}\n direccion: ${inputAdress.value}\n telefono: ${inputPhone.value}\n horario: \n${datosActuales.hora} horas\n${datosActuales.minutos} minutos\n\n*PEDIDO*\n  `;
       carrito.forEach((producto) => {
-        const { icono, titulo, cantidad, precio } = producto;
-        mensaje += `\n////////\nPEDIDO\n///////////\n Producto: ${titulo}\nCantidad: ${cantidad}\ncarnes: ${carnes}\nPrecio: ${precio} \n\n ` ;
+        
+        
+        const { carnes, titulo, cantidad, precio } = producto; // DESESTRUCTURACIÓN//
+        mensaje += `\n Producto: ${titulo}\nCantidad: ${cantidad}\ncarnes: ${carnes}\nPrecio: ${precio} \n ` ;
       });
-    
+      
       let precioTotal = carrito.reduce((acumulado, burger, )=>{
         const subtotal = burger.precio * burger.cantidad;
         return acumulado + subtotal
       }, 0)
-      mensaje += `Precio final: ${precioTotal}`;
+      mensaje += `\nPrecio final: ${precioTotal}`;
     
       const url = `https://api.whatsapp.com/send?phone=${encodeURIComponent(numeroTelefono)}&text=${encodeURIComponent(mensaje)}`;
-      window.open(url, '_blank');
-    };
+      window.open(url, );
+    }, 5000);    };
      
   
   })
