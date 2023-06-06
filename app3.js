@@ -255,95 +255,80 @@ document.querySelectorAll('.pusheoAlcarrito').forEach((boton, index) => {
 //( NO FUNCIONABA DIRECTAMENTE SOBRE EL BOTON YA QUE NO ESTABA CARGADO)//
     //////////////////////////////////////////////
 
-
-
      const contenedorCarrito = document.querySelector("#contenedorCarrito");
-    contenedorCarrito.addEventListener("click", (event) => {
-      if (event.target.classList.contains("sumaCantidad")) {
-        const boton = event.target;
-        const producto = boton.closest(".productoElegido");
+     contenedorCarrito.addEventListener("click", (event) => {
+       if (event.target.classList.contains("sumaCantidad")) {
+         const boton = event.target;
+         const producto = boton.closest(".productoElegido");
 
-        const index = Array.from(contenedorCarrito.children).indexOf(producto);
+         const index = Array.from(contenedorCarrito.children).indexOf(producto);
 
-        carrito[index].cantidad++;
-        actualizarCarrito2();
-        ocultarCarritovacio();
-        saveLocalStorage ();
+         carrito[index].cantidad++;
+         actualizarCarrito2();
+         ocultarCarritovacio();
+         saveLocalStorage();
+       }
 
+       if (event.target.classList.contains("restaCantidad")) {
+         const boton = event.target;
+         const producto = boton.closest(".productoElegido");
 
+         const index = Array.from(contenedorCarrito.children).indexOf(producto);
 
-      }
+         carrito[index].cantidad--;
 
-      if (event.target.classList.contains("restaCantidad")) {
-        const boton = event.target;
-        const producto = boton.closest(".productoElegido");
+         if (carrito[index].cantidad <= 0) {
+           carrito.splice(index, 1);
+         }
+         actualizarCarrito2();
+         ocultarCarritovacio();
+         saveLocalStorage();
+       }
+       /////////////////////////////////////////////////////////////////////////////////////////////
+       // MODIFICADOR PARA DOBLE | TRIPLE | SIMPLE (SIGUE MIRANDO EVENTOS EN EL CONTENEDOR)//
+       // CARNES 1 = SIMPLE CARNES 2 = DOBLES CARNES 3 = TRIPLES//
+       /////////////////////////////////////////////////////////////////////////////////////////////
 
-        const index = Array.from(contenedorCarrito.children).indexOf(producto);
+       if (event.target.classList.contains("doble")) {
+         const boton = event.target;
+         const producto = boton.closest(".productoElegido");
+         const index = Array.from(contenedorCarrito.children).indexOf(producto);
+         carrito[index].precio = carrito[index].precioDoble;
+         carrito[index].carnes = 3;
+         event.currentTarget.classList.add("btncheck1");
 
-        carrito[index].cantidad--;
-        
-        if (carrito[index].cantidad <= 0) {
-          carrito.splice(index, 1);
-        
-        }
-        actualizarCarrito2();
-        ocultarCarritovacio();
-        saveLocalStorage ();
+         actualizarCarrito2();
+         ocultarCarritovacio();
+       }
+       if (event.target.classList.contains("triple")) {
+         const boton = event.target;
+         const producto = boton.closest(".productoElegido");
 
-      }
-/////////////////////////////////////////////////////////////////////////////////////////////
-// MODIFICADOR PARA DOBLE | TRIPLE | SIMPLE (SIGUE MIRANDO EVENTOS EN EL CONTENEDOR)//
-// CARNES 1 = SIMPLE CARNES 2 = DOBLES CARNES 3 = TRIPLES//
-/////////////////////////////////////////////////////////////////////////////////////////////
+         const index = Array.from(contenedorCarrito.children).indexOf(producto);
 
+         carrito[index].precio = carrito[index].precioTriple;
+         carrito[index].carnes = 3;
+         actualizarCarrito2();
+         ocultarCarritovacio();
+       }
 
-if (event.target.classList.contains("doble")) {
-  const boton = event.target;
-  const producto = boton.closest(".productoElegido");
-  const index = Array.from(contenedorCarrito.children).indexOf(producto);
-  carrito[index].precio = carrito[index].precioDoble;
-  carrito[index].carnes = 3;
-  event.currentTarget.classList.add("btncheck1");
+       if (event.target.classList.contains("simple")) {
+         const boton = event.target;
+         const producto = boton.closest(".productoElegido");
 
-  actualizarCarrito2();
-  ocultarCarritovacio();
-}
-    if (event.target.classList.contains("triple")) {
-      const boton = event.target;
-      const producto = boton.closest(".productoElegido");
+         const index = Array.from(contenedorCarrito.children).indexOf(producto);
 
-      const index = Array.from(contenedorCarrito.children).indexOf(producto);
-
-      carrito[index].precio = (carrito[index].precioTriple);
-      carrito[index].carnes = 3
-      actualizarCarrito2();
-      ocultarCarritovacio();
-    }
-
-    if (event.target.classList.contains("simple")) {
-      const boton = event.target;
-      const producto = boton.closest(".productoElegido");
-
-      const index = Array.from(contenedorCarrito.children).indexOf(producto);
-
-      carrito[index].precio = (carrito[index].precioSimple);
-      carrito[index].carnes = 1
-      actualizarCarrito2();
-      ocultarCarritovacio();
-    }
+         carrito[index].precio = carrito[index].precioSimple;
+         carrito[index].carnes = 1;
+         actualizarCarrito2();
+         ocultarCarritovacio();
+       }
+     }); 
 
 
-      
-      
-     
-    }); 
-
-    console.log(carrito)
-///////////////////////
-
-///////////////////////////////////
-//FINALIZACION //
-//////////////////////////////////////
+////////////////////////////////////////////////////////
+//FORMULARIO CON VALIDACIÓN DE CAMPO VACÍO Y LOCALSTORAGE//
+//////////////////////////////////////////////////////////
 
 let inputName = document.querySelector("#inputName");
 let inputAdress = document.querySelector("#inputAdress");
@@ -358,6 +343,8 @@ function finishing(e) {
     inputPhone.value === ""
   ) {
     e.preventDefault(), alertFailure();
+    
+    /////// FUNCIÓN SWEET ALERT FAIL ///////
     function alertFailure() {
       Swal.fire({
         position: "center-center",
@@ -371,6 +358,7 @@ function finishing(e) {
   } else {
     e.preventDefault(), alertSucces(), saveClientStorage();
 
+    /////// FUNCIÓN SWEET ALERT SUCCES ///////
     function alertSucces() {
       Swal.fire({
         position: "center-center",
@@ -385,7 +373,7 @@ function finishing(e) {
     }
   }
 }
-   /////////////CARGAR DATOS CLIENTE EN EL LOCAL ///////
+   /////////////CARGAR DATOS CLIENTE EN EL LOCALSTORAGE ///////
   loadCliente ()
   function loadCliente () {
     if (localStorage.getItem("direccion")) {
@@ -397,7 +385,7 @@ function finishing(e) {
     if (localStorage.getItem("nombre")) {
       inputName.value = JSON.parse(localStorage.getItem("nombre"))
     }}
- /////////////GUARDAR DATOS CLIENTE EN EL LOCAL ///////
+ /////////////GUARDAR DATOS CLIENTE EN EL LOCALSTORAGE ///////
   function saveClientStorage ()  {
     const telefonoStr = JSON.stringify(inputPhone.value)
     localStorage.setItem( "telefono", `${telefonoStr}`)
