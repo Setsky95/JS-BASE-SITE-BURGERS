@@ -408,10 +408,10 @@ function finishing (e){
    const enviarPorWhatsApp = () => {
       const numeroTelefono = '+542214944050';
     
-      let mensaje = "¡Hola! Quiero hacer este pedido";
+      let mensaje = ` Nombre: ${inputName.value}\n direccion: ${inputAdress.value}\n telefono: ${inputPhone.value}\n`;
       carrito.forEach((producto) => {
         const { icono, titulo, cantidad, precio } = producto;
-        mensaje += ` Nombre: ${inputName.value}\n direccion: ${inputAdress.value}\n telefono: ${inputPhone.value}\n////////\nPEDIDO\n///////////\n ${icono} : ${titulo}\nCantidad: ${cantidad}\nPrecio: ${precio}\n\n ` ;
+        mensaje += `\n////////\nPEDIDO\n///////////\n Producto: ${titulo}\nCantidad: ${cantidad}\ncarnes: ${carnes}\nPrecio: ${precio} \n\n ` ;
       });
     
       let precioTotal = carrito.reduce((acumulado, burger, )=>{
