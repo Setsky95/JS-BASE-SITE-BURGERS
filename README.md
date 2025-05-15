@@ -20,6 +20,7 @@ This project was created as the **final assignment of a foundational JavaScript 
 - Product customization (e.g., hamburger layers)
 - **Toast notifications** using the **Toastify** library
 - Responsive design using Bootstrap (*though responsiveness was not a main focus*)
+- Local storage cart save and load.
 
 ### 📌 Notes
 
@@ -43,6 +44,7 @@ Este proyecto fue desarrollado como **trabajo final de un curso formativo básic
 - Personalización de productos (por ejemplo, capas de hamburguesa)
 - **Notificaciones emergentes** usando la librería **Toastify**
 - Diseño responsive con Bootstrap (*aunque no fue un objetivo principal del proyecto*)
+- Guardado de carrito en el localstorage
 
 ### 📌 Notas
 
